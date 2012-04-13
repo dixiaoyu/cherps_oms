@@ -1,0 +1,122 @@
+<script type="text/javascript">function displayCountry(){
+	country=document.forms[0].country.options[document.forms[0].country.selectedIndex].value;
+	alert(country); }
+</script>
+
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Profile</h2>
+     <div class="mpcontent">
+     <h4 style="background-color:#F2F2F2; width:635px; height:27px; margin:2px 5px; position:absolute; left:5px; top:45px;">PERSONAL INFORMATION</h4>
+     <h5 style="color:#F8A23A; position:absolute; left:20px; top:80px;">Kindly fill in all the information so we can better serve you.</h5>
+  <div>  
+
+<%= form_for(@member) do |f| %>
+ 
+ 
+    <div>Member ID :&nbsp;<%= current_user.mbr_id %>&nbsp;&nbsp;
+  Name :&nbsp;<%= @member.first_name+" "+@member.last_name %></div><br />
+  <div>
+    Title:&nbsp;
+    <% if @member.mbr_title.strip()=='MISS' %>
+    <%   key = 1 %>
+    <% elsif @member.mbr_title.strip()=='MR' %>
+    <%   key= 2 %>
+    <% elsif @member.mbr_title.strip()=='MRS' %>
+    <%   key= 3 %>
+    <% elsif @member.mbr_title.strip()=='MS'%>
+    <%   key= 4 %>
+    <% end %>
+   
+    <%= select_tag(:mbr_title, options_for_select([['MISS', 1], ['MR', 2],['MRS', 3], ['MS', 4]],key)) %>
+    
+  </div><br />
+  
+  <div>
+    Contact No:&nbsp;
+    <%= f.text_field :contact_num , :size=>"8"%>
+  </div><br />
+
+  <div  style="position: absolute; top: 48px; left: 280px; width: 500px;">
+    Email Address:&nbsp;
+    <%= f.text_field :email_addr %>
+  </div><br />
+
+  <div style="position: absolute; top: 98px; left: 280px; width: 500px;">
+    Date of Birth:&nbsp;
+    <%=date_select "birth","user",:start_year=>1940, :end_year=>Time.now.year.to_i, :default=>{:year=>@member.birth_date.year,:month=>@member.birth_date.month,:day=>@member.birth_date.day}%>    
+  </div>
+  
+  
+   <p style="position: absolute; top: 150px; left: -10px;">Address :</p>
+   <div style="position: absolute; top: 175px; width: 500px;"> 
+    <% if @address_m.empty? %>
+    
+    Street :&nbsp;<%= text_field_tag 'm_address1', :style=>"margin-left:3px;" %><br />
+           <%= text_field_tag 'm_address2','', :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'm_address3','', :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'm_address4','', :style=>"margin-left:65px;" %><br />
+    City   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'm_city' %><br />
+    State  :&nbsp;<%= text_field_tag 'm_state', '', :style=>"margin-left:11px;" %><br />
+    Country  :&nbsp;&nbsp;&nbsp;&nbsp;<%= select_tag(:m_country, options_for_select([['SG', 1], ['US', 2],['MY', 3]],key)) %><br/>          
+    ZIP/Postal :&nbsp;&nbsp;<%= text_field_tag 'm_postal', '', :size=>"14", :style=>"margin-left:-2px;"%>
+    <% else %>    
+    Street :&nbsp;<%= text_field_tag 'm_address1', @address_m[0].street_line1, :style=>"margin-left:3px;" %><br />
+           <%= text_field_tag 'm_address2', @address_m[0].street_line2, :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'm_address3', @address_m[0].street_line3, :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'm_address4', @address_m[0].street_line4, :style=>"margin-left:65px;" %><br />
+    City   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'm_city',@address_m[0].city_name %><br />
+    State  :&nbsp;<%= text_field_tag 'm_state',@address_m[0].state_name, :style=>"margin-left:11px;" %><br />
+    Country  :&nbsp;&nbsp;&nbsp;&nbsp;
+    <% if @address_m[0].country_id=="SG"%>
+    <%   key=1 %>
+    <% elsif @address_m[0].country_id=="US"%>
+    <%   key=2 %>
+    <% elsif @address_m[0].country_id=="MY"%>
+    <%   key=3 %>
+    <% end %>    
+    <%= select_tag(:m_country, options_for_select([['SG', 1], ['US', 2],['MY', 3]],key)) %><br />         
+    
+    ZIP/Postal :&nbsp;&nbsp;<%= text_field_tag 'm_postal',@address_m[0].postal_code, :size=>"14", :style=>"margin-left:-2px;" %>   
+    <% end %>
+  </div><br />
+  
+  <p style="position: absolute; top: 150px; left: 270px; width: 500px;">Delivery Address :</p>
+  <div style="position: absolute; top: 175px; left: 280px; width: 500px;">   
+    <% if @address_d.empty? %>
+    
+    Street :&nbsp;<%= text_field_tag 'd_address1', :style=>"margin-left:3px;" %><br />
+           <%= text_field_tag 'd_address2','', :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'd_address3','', :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'd_address4','',:style=>"margin-left:65px;" %><br />
+    City   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'd_city' %><br />
+    State  :&nbsp;<%= text_field_tag 'd_state', '', :style=>"margin-left:11px;" %><br />
+    Country  :&nbsp;&nbsp;&nbsp;&nbsp;<%= select_tag(:d_country, options_for_select([['SG', 1], ['US', 2],['MY', 3]],key)) %>        
+    ZIP/Postal :&nbsp;&nbsp;<%= text_field_tag 'd_postal','', :size=>"14",:style=>"margin-left:-2px;" %>
+    <% else %>    
+    Street :&nbsp;<%= text_field_tag 'd_address1', @address_d[0].street_line1, :style=>"margin-left:3px;" %><br />
+           <%= text_field_tag 'd_address2', @address_d[0].street_line2, :style=>"margin-left:65px;"%><br />
+           <%= text_field_tag 'd_address3', @address_d[0].street_line3, :style=>"margin-left:65px;" %><br />
+           <%= text_field_tag 'd_address4', @address_d[0].street_line4, :style=>"margin-left:65px;" %><br />
+    City   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'd_city',@address_d[0].city_name %><br />
+    State  :&nbsp;<%= text_field_tag 'd_state',@address_d[0].state_name, :style=>"margin-left:11px;" %><br />
+    Country  :&nbsp;&nbsp;&nbsp;&nbsp;
+    <% if @address_d[0].country_id=="SG"%>
+    <%   key=1 %>
+    <% elsif @address_d[0].country_id=="US"%>
+    <%   key=2 %>
+    <% elsif @address_d[0].country_id=="MY"%>
+    <%   key=3 %>
+    <% end %> 
+    <%= select_tag(:d_country, options_for_select([['SG', 1], ['US', 2],['MY', 3]],key)) %><br />                  
+    ZIP/Postal :&nbsp;&nbsp;<%= text_field_tag 'd_postal',@address_d[0].postal_code, :size=>"14",:style=>"margin-left:-2px;" %> 
+    <% end %>
+  </div><br />
+  
+  <div style="position: absolute; top: 380px; left: 550px;">
+    <%= f.submit "Update" %>
+  </div>
+ 
+<% end %>
+ </div>
+ </div>
+    <!-- end .content --></div>

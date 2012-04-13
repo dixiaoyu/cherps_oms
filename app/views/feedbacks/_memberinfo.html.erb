@@ -1,0 +1,18 @@
+
+<h3 style="background-color:#F2F2F2; width:635px; height:30px; margin:2px 5px; position:absolute; left:5px; top:45px;">MEMBER INFORMATION</h3>
+     <table width="200" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td>MEMBER NAME:</td>
+    <td><%= current_user.first_name%></td>
+    <td>EMAIL:</td>
+    <td><%= current_user.email_addr%></td>
+  </tr>
+  <tr>
+    <td>IC/PASSPORT/FIN:</td>
+    <td><%= current_user.mbr_id%></td>
+    <td>CONTACT NO:</td>
+    <td><%= current_user.contact_num%></td>
+  </tr>
+     </table>
+     
+<h4 style="position: absolute; top: 140px; left: 5px;">Thank you for shopping at Challenger. We value your opinion in helping us improve and better overselves.</h4>

@@ -1,0 +1,9 @@
+
+<% @workshops.each do |workshop| %>
+	<table style="float: left; width: 150px; height: 10px; font-size: 13px; margin: 10px 5px;">
+  	<tr><td><%= image_tag "Advertisement/cp1.jpg", :style=>"padding-right: 5px;" %></td></tr>
+  	<tr><td style="height: 50px; font-size: 12px;"><%=  workshop.workshop_desc %></td></tr>
+  	<tr><td style="height: 50px; font-size: 12px;"><%=  workshop.workshop_date.to_date %></td></tr>    
+    <tr><td><%= link_to "select", workshopdetail_path(:id=>workshop.id) %></td></tr>
+    </table>
+<% end %>

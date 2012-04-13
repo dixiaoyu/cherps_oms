@@ -1,0 +1,42 @@
+<div id="content" style="background-color:#DFDFDF;">
+	<h2 style="background-color:#2A5388; width:657px; height:35px;">Feedback</h2>
+     <div class="fbcontent">
+        <%= render "feedbacks/memberinfo"%>     
+
+     <form style="position:absolute; left:10px; top:115px; width: 650px;">
+  <table border="0" cellspacing="0" cellpadding="0">
+  <tr style="background-color:white; color:black; font-size:13px;">
+  	<td>FEEDBACK TYPE :</td>
+  	<td style="color: #F8A23A;">Transactional</td>
+    <td>Purchased Item</td>
+    <td style="text-decoration: underline;"><%= @item[0].item_desc%></td>
+  </tr>
+  <tr>
+    <td>Transaction No:</td>
+    <td><%= @item[0].item_id%></td>
+    <td>Date:</td>
+    <td><%= @item[0].trans_date.to_date%></td>
+  </tr>
+  <tr>
+    <td>Product Code:</td>
+    <td>&nbsp;</td>
+    <td>Quantity:</td>
+    <td><%= @item[0].item_qty.to_i %></td>
+  </tr>
+  <tr>
+    <td>Outlet Location:</td>
+    <td colspan="3"><%= @location.loc_name %></td>
+  </tr>
+</table>
+     </form>
+     
+     <h4 style="color:black; position:absolute; left:5px; top:320px;">Please key in your feedback</h4>
+	   <%= form_for(:feedbacks, :url=>createfeedback_path(:note=>@note, :type=>2)) do |f| %>
+	   <%= f.text_area :feedback_text, :style=>"position:absolute; top:90px; width:560px; height:180px; overflow:hidden;" %>
+	   <%= f.submit "SUBMIT", :style=>"position:absolute; top:280px;" %>
+	   <%= image_tag "feedback.png", :style=>"position:absolute; top:280px; left:330px;" %> 
+       <% end %>
+       
+    </div>
+
+</div>

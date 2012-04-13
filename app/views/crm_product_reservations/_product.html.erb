@@ -1,0 +1,22 @@
+
+<form style=" overflow:auto; width:653px; height:135px; position:absolute; top:245px; margin:2px 5px;">
+ <table width="635" cellspacing="2" style="background-color:#F2F2F2; font-size: 13px;">
+  <tr style="background-color:#F8A23A; color:white;">
+    <th>Reservation</th>
+    <th>Description</th>    
+    <th>Reserve Date</th>
+    <th>Expiry Date</th>
+    <th>&nbsp</th>
+  </tr>
+  <% @product_reservations.each do |product_reservation| %>
+  <tr>
+    <td>00000<%= product_reservation.id%></td>
+    <td><%= product_reservation.item_desc %></td>    
+    <td><%= product_reservation.created_on.to_date %></td>
+    <td><%= product_reservation.valid_until.to_date %></td>
+    <td style="text-decoration: underline;"><%= link_to "cancel", productdestroy_path(:id=>product_reservation.id, :qty=>product_reservation.qty_reserved), :confirm=>"Are you sure?" %></td>    
+  </tr>
+  <% end %>
+</table>
+</form>
+

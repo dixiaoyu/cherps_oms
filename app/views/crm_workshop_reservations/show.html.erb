@@ -1,0 +1,44 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">Workshop Reservation</h2>
+      <div class="rrscontent">
+      	<div style="padding:0 5px;"><%= image_tag "Advertisement/cp1.jpg", :style=>"float:left; height:160px; width:150px; margin-right:10px;" %>
+          <p>
+           <b>Worksho Name:</b>
+           <%= @workshop.workshop_desc %><br />
+          </p>
+
+          <p>
+           <b>Workshop Date:</b>
+           <%= @workshop.workshop_date.to_date %><br />
+          </p>
+
+          <p>
+           <b>Workshop Location</b>
+           <%= @workshop.workshop_location %><br />
+          </p>
+    
+        </div>
+
+<h4 style="background-color:#F2F2F2; width:635px; height:20px; margin:2px 5px; position:absolute; left:5px; top:220px;">You have successfully reserve this product. Thank you !</h4>        
+     <table border="0" cellspacing="5" cellpadding="0" style="position: absolute; top: 275px; left: 50px;">
+        <tr>
+         <td>Reference No:</td>
+         <td>00000<%=@reservation.id %></td>
+        </tr>
+
+         <td>Contact No:</td>
+         <td>8888 8888</td>
+        </tr>
+
+     </table>
+
+<form style="position:absolute; top:530px; left:50px; width:400px;">
+	<%= link_to image_tag("continue-reservationbtn.png"), workshoplist_path(:c=>0) %>
+    <a href="/crm_redemption_reservations"><%= image_tag "view-reservationbtn.png" %></a> 
+    
+</form>
+
+
+</div>
+<!-- end .content --></div> 
+

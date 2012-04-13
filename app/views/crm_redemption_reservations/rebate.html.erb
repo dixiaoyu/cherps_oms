@@ -1,0 +1,36 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">Redemption Reservation</h2>
+      <div class="rrscontent">
+
+
+<h4 style="background-color:#F2F2F2; width:635px; height:25px; margin:2px 5px; position:absolute; left:5px; top:50px;">You have got your rebate</h4>        
+     <table width="200" border="0" cellspacing="5" cellpadding="0">
+        <tr>
+         <td>Reference No:</td>
+         <td>00000<%=@reservation.id %></td>
+        </tr>
+        <tr>
+         <td>Store:</td>
+         <td><%=@reservation.loc_id %></td>
+        </tr>
+        <tr>
+         <td>Address:</td>
+         <td>XXXXXXXXXX</td>
+        </tr>        
+        <tr>
+         <td>Expiry Date:</td>
+         <td><%=@reservation.valid_until.to_date%></td>  
+        </tr>
+        <tr>
+         <td>Contact No:</td>
+         <td>8888 8888</td>
+        </tr>      
+     </table>
+
+
+
+
+
+</div>
+<!-- end .content --></div> 
+

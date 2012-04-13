@@ -1,0 +1,30 @@
+<div id="content" style="background-color:#DFDFDF;">
+	<h2 style="background-color:#2A5388; width:657px; height:35px;">Feedback</h2>
+     <div class="fbcontent">
+     	<%= render "feedbacks/memberinfo"%>
+    
+ 
+    	 
+    <% if @type=="trans" %>
+    
+    <p id="change" style="position: absolute; top: 210px; background-color: #F2F2F2; left: 10px; height: 80px; padding-top: 15px; width: 630px; font-weight: bold;">Purchased Item:</p>
+    <p style="position: absolute; top: 225px; left: 170px;">	<%= link_to "Select Transaction Item", purchaselist_path, :style=>"left: 150px; color: #F8A23A; font-size:18px;"%></p>
+    <h4 style="color:black; position:absolute; left:5px; top:320px;">Please key in your feedback</h4>
+	   <%= form_for(:feedbacks, :url=>createfeedback_path(:note=>@note, :type=>2)) do |f| %>
+	   <%= f.text_area :feedback_text, :style=>"position:absolute; top:90px; width:560px; height:180px; overflow:hidden;" %>
+	   <%= image_tag "feedback.png", :style=>"position:absolute; top:280px; left:330px;" %> 
+       <% end %>
+    <% else %>
+    <p style="position: absolute; top: 210px; background-color: #F2F2F2; left: 10px; height: 80px; padding-top: 20px;">
+	<span style="font-size:18px; color:black;">FEEDBACK TYPE :</span>&nbsp;&nbsp;<dfn style="color:#F8A23A;">Non-Transactional</dfn><br />
+	Non-transactional feedback includes all your workshop reservation transactions.</p>
+	<h4 style="color:black; position:absolute; left:5px; top:320px;">Please key in your feedback</h4>
+	   <%= form_for(:feedbacks, :url=>createfeedback_path(:note=>@note, :type=>2)) do |f| %>
+	   <%= f.text_area :feedback_text, :style=>"position:absolute; top:90px; width:560px; height:180px; overflow:hidden;" %>
+	   <%= f.submit "SUBMIT", :style=>"position:absolute; top:280px;" %>
+	   <%= image_tag "feedback.png", :style=>"position:absolute; top:280px; left:330px;" %> 
+       <% end %>
+    <% end %>
+       
+     </div>
+</div>

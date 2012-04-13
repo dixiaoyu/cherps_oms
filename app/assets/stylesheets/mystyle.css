@@ -1,0 +1,309 @@
+*	{ margin: 0;
+      padding: 0; 
+}
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color:#194784; 
+	background-color:#DFDFDF;
+	margin: 0;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 10px;
+	padding-left: 10px;/* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+}
+a, a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none; text-decoration:none; outline: none;
+}
+
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color:#414958; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #4E5869;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none; color: #F8A23A;
+}
+#content { width: 678px;
+		   position: absolute;
+		   left: 430px; top: 180px;
+		   height: 575px;
+		   background-color: #C9C9C9;
+}
+.search {
+	display: inline;
+	position: absolute;
+	left: 805px; top:0; width:310px; height:55px;
+}
+/* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
+.container {
+	width: 1000px; height: 850px;
+	max-width: 1260px;/* a max-width may be desirable to keep this layout from getting too wide on a large monitor. This keeps line length more readable. IE6 does not respect this declaration. */
+	min-width: 780px;/* a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
+	background: #DFDFDF;
+	margin: 0 180px; /* the auto value on the sides, coupled with the width, centers the layout. It is not needed if you set the .container's width to 100%. */
+}
+#content h2{color:#F8A23A; background-repeat:no-repeat;}
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+#tab{
+	position: absolute;
+	top: 40px;
+	float: left; color:#053A7F;
+	padding: 5px 10px;
+	margin: 3px 1px 0px 0px;
+	font: bold 1em sans-serif;
+	background-color:white;
+	list-style: none;
+}
+#tabcontent {
+	position:absolute; width:655px; height:180px;
+	top: 71px; float: left; color:#053A7F;
+	background-color: white;
+	padding: 10px 12px;
+	font: bold 1em sans-serif;
+}
+#tabcontent p {
+	margin:5px;
+}
+.sidebar1 {
+	position: absolute;
+	top: 180px; left: 235px;
+}
+.sidebar2 {
+	position: absolute;
+	left: 235px; top: 373px;
+}
+.sidebar3 {
+	position: absolute;
+	left: 235px; top: 558px;
+	background-color: white;
+}
+
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border: none; width:180px; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 10px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	padding: 5px 10px 2px 15px;
+	border-bottom: 1px dotted #FFF;
+	font-size:11px;
+	color:#F8A23A; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	text-decoration: none;
+	background-color:transparent;
+	color: #FFF;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background: #6F7D94;
+	color: #FFF;
+}
+
+/* ~~The footer ~~ */
+.footer {
+	padding: 0;
+	background-repeat:no-repeat;
+	background: url(00-Footer-BG.png);
+	background-size: ;
+	position: absolute;/* this gives IE6 hasLayout to properly clear */
+	left:230px; top: 765px; width:875px; height:110px;
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+
+.footer table {
+	text-align: left;
+	text-decoration:none;
+	width: 600px;
+	margin-left: 20px; margin-top: 5px;
+	font-size: 14px;
+}
+
+.rrrcontent, .rrscontent, .fbcontent, .mpcontent, .mrcontent, .fb1content, .mp1content{
+	background-color:white; height: 525px;
+	margin-top:5px; padding:5px;
+}
+.rrrcontent form {
+	 width:650px; height:175px; 
+	 position:absolute; top:245px; margin:2px 12px;
+}
+.rrrcontent table {
+	border-color:#053A7F;
+	font-size: 16px;
+	color:#194784;
+}
+.rrrcontent table th {background-color:#F8A23A; color:white;}
+.rrrcontent table td {padding:0 5px;}
+
+.rrscontent table {font:14px; position:absolute; left: 50px; top: 100px; width:580px;}
+
+.fbcontent table {position:absolute; left:10px; top:75px; width:655px; font-size:14px; background-color:#F2F2F2;}
+.fbcontent table td {padding:5px 5px;}
+.fbcontent form {position:absolute; left:10px; top:265px; padding:5px 0px 5px 5px; height:150px;}
+.fbcontent form table {position:absolute; left:-1px; top: 70px; background-color:#F2F2F2; text-align:left; width:530px;}
+
+.fb1content table {position:absolute; left:10px; top:80px; width:655px; font-size:14px; background-color:#F2F2F2;}
+.fb1content table td {padding:5px 5px;}
+.fb1content form {position:absolute; top: 210px; left:10px; background-color: #F2F2F2; height:120px; width:645px;}
+.fbcontent form table {position:absolute; left:-1px; top: 70px; background-color:#F2F2F2; text-align:left; width:650px;}
+
+
+.fbscontent {position:absolute; top:71px; height:475px; width:675px; background-color:white;}
+.fbscontent table {position:absolute; top:15px; left:350px; width:300px; font-size:13px; text-align:right;}
+.fbscontent form table th {background-color:#F8A23A; color:white;}
+.fbscontent form table {background-color:#F2F2F2; position:absolute; top:0; left:5px; width:615px; height:370px; text-align:center; }
+
+.mpcontent table {background-color:white; font-size:14px; height:430px; width:650px; position:absolute; top:100px; left:20px;}
+.mpcontent form {position:absolute; left:20px; top:140px;}
+.mpcontent table b {color: black;}
+
+.mp1content form {position: absolute; left: 20px; top: 100px;}
+.mp1content form table {width: 550px; font-size: 16px; text-align: left; padding: 5px; text-align: right;}
+
+.mrcontent form {background-color:#F2F2F2; position:absolute; left:10px; top:295px; width:350px; height:250px;}
+/* ~~miscellaneous float/clear classes~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 0px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/* Below is the CSS for horizontal bar menu */
+
+/* The outermost container of the Menu Bar, an auto width box with no margin or padding */
+ul.MenuBarHorizontal
+{
+	display: block;
+	position: absolute;
+	left: 227px; top: 95px;
+	margin: 0; padding: 0;
+	list-style-type: none;
+	cursor: default;
+	width: 944px;
+}
+/* Set the active Menu Bar with this class, currently setting z-index to accomodate IE rendering bug: http://therealcrisp.xs4all.nl/meuk/IE-zindexbug.html */
+ul.MenuBarActive
+{
+	z-index: 1000;
+}
+/* Menu item containers, position children relative to this container and are a fixed width */
+ul.MenuBarHorizontal li
+{
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	position: relative;
+	cursor: pointer;
+	width: 120px;
+	float: left;
+}
+
+
+/*******************************************************************************
+
+ DESIGN INFORMATION: describes color scheme, borders, fonts
+
+ *******************************************************************************/
+
+/* Menu items are a light gray block with padding and no text decoration */
+ul.MenuBarHorizontal a
+{   
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+}
+/* Menu items that have mouse over or focus have a blue background and white text */
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus,  a.MenuBarItemHover
+{ }
+/* Menu items that are open with submenus are set to MenuBarItemHover with a blue background and white text */
+
+
+/* For showtabs in redemption reservation page*/
+.shadetabs{
+position: absolute; top: 280px;
+padding: 5px 5px; background:white;
+margin: 1px;
+font: bold 17.3px Verdana;
+list-style-type: none;
+text-align:center;
+width:669px; /*set to left, center, or right to align the menu as desired*/
+}
+
+.shadetabs li{
+display: inline;
+margin: 3px;
+}
+
+.shadetabs li a{
+text-decoration: none;
+position: relative;
+z-index: 1;
+padding: 3px 5px;
+color: #F8A23A;
+background:url(01-Home-BG-RecentTrans.png);
+}
+
+.shadetabs li a:hover{
+color: #204C86;
+}
+
+.shadetabs li a.selected{ /*selected main tab style */
+position: relative;
+top: 1px;
+}
+
+.shadetabs li a.selected{ /*selected main tab style */
+background:white;
+}
+
+.shadetabs li a.selected:hover{ /*selected main tab style */
+text-decoration: none;
+}
+
+/*******************************************************************************
+
+ BROWSER HACKS: the hacks below should not be changed unless you are an expert
+
+ *******************************************************************************/
+ 
+<!--[if lte IE 7]>
+.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
+ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
+
+/* HACK FOR IE: to make sure the sub menus show above form controls, we underlay each submenu with an iframe */
+ul.MenuBarHorizontal iframe
+{
+	position: absolute;
+	z-index: 1010;
+}
+/* HACK FOR IE: to stabilize appearance of menu items; the slash in float is to keep IE 5.0 from parsing */
+@media screen, projection
+{
+	ul.MenuBarHorizontal li.MenuBarItemIE
+	{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}

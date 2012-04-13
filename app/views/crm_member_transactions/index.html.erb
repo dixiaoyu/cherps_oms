@@ -1,0 +1,17 @@
+
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Transaction History</h2>
+    <div id="TabbedPanels1" class="TabbedPanels">
+      <ul class="TabbedPanelsTabGroup">
+        <li class="TabbedPanelsTab" onclick="this.style.backgroundColor=('white')"><%= link_to "REDEMPTION HISTORY", transaction_path(:type=>"1")%></li>
+        <li class="TabbedPanelsTab" onclick="this.style.backgroundColor=('white')"><%= link_to "PURCHASE HISTORY" ,transaction_path(:type=>"2")%></li>
+        <li class="TabbedPanelsTab" onclick="this.style.backgroundColor=('white')"><%= link_to "WORKSHOP HISTORY", transaction_path(:type=>"3")%></li>
+      </ul>
+    </div>
+   
+    <div class="TabbedPanelsContentGroup">
+        <div class="TabbedPanelsContent">  
+      <%= render "crm_member_transactions/history"%>
+        </div>      
+    </div>
+<!-- end .content --></div>

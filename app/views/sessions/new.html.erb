@@ -1,0 +1,40 @@
+<%= cookies.signed[:remember_token]%>	
+<%= form_for(:session, :url => sessions_path) do |f| %>
+   <p class="title">MEMBER LOGIN</p>
+   <table  cellspacing="2px" cellpadding="3px">
+     <tr>
+       <td class="right">IC/FIN/PASSPORT NO:</td>
+       <td><%= f.text_field :mbr_id, :style=>"width:202px;"  %></td>
+     </tr>
+     <tr>
+       <td class="right">PASSWORD:</td>
+       <td><%= f.password_field :password %></td>
+     </tr>
+     <tr style="height: 50px;">
+       <td class="right" style="font-size: 15px;"><%= link_to "Forgot your password?",forget_path %></td>
+       <td style="font-size: 12px;"><%= check_box_tag 'remember'%>Remember me</td> 
+     </tr>
+     <tr>
+       <td> <section style="font-size: 12px; color: red;">
+	        <% flash.each do |key, value| %>
+	        <div class="flash <%= key %>"><%= value %></div>
+	        <% end %>
+	        <%= yield %>
+            </section>
+       </td>
+       
+       <script>  
+           $('a').bind('click', function() {  
+           alert('Unobtrusive!');  
+           }  
+       </script>
+       
+       <td colspan="2" class="right"><%= image_submit_tag "loginbutton.png" %></td>
+     </tr>
+   </table>
+       <p style="position: absolute; left:305px; top: 465px; color: white;" class="login-font">Are you a member? If not,&nbsp;<%= link_to "SIGN UP Now", signup_path %></p>
+   
+     <div class="footer">
+      <p>@ 2011 Challenger Technologies Limited. All Rights Reserved | <a href="#">Privacy & Security Policy</a></p>
+     </div>
+ <% end %>

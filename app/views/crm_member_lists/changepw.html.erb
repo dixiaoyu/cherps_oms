@@ -1,0 +1,36 @@
+ <div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Password</h2>
+      <div class="mp1content">
+  <%= form_for(:crm_member_list, :url=>:changepassword) do |f| %> 
+  <table border="0" cellspacing="20px" cellpadding="5px">
+  <tr>
+    <td style="font-weight: bold;">CURRENT PASSWORD:</td>
+    <td align="left"><%= f.password_field :current_pw, :style=>"width:201px;" %></td>    
+  </tr>  
+ 
+  <tr>
+    <td style="font-weight: bold;">NEW PASSWORD:</td>
+    <td align="left" style="font-size:12px; color:#FBA23C"><%= f.password_field :password %></td>    
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">CONFIRM NEW PASSWORD:</td>
+    <td align="left"><%= f.password_field :password_confirmation %></td>
+  </tr>
+    <tr><td colspan="2" style="font-size: 12px; color: red; text-align: center;">
+  	<% if params[:n]=="0"%>
+  	  Your password confirmation doesn't match.
+  	<% elsif params[:n]=="1" %>
+  	  The current password is incorrect.
+  	<% elsif params[:n]=="2" %>
+  	  The length of password must be more than 6 characters.
+  	<% end %>
+  </td></tr>
+  <tr>
+    <td colspan="2" style="text-align:center;"> <%= f.submit "Submit", :style=>"font-size: 18px;" %><!--<%= link_to "CANCEL", home_path(:id=>current_user.id) %>--></td>
+    
+  </tr>
+  </table>
+  <% end %>
+  
+  </div>
+</div>

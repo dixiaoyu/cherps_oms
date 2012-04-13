@@ -1,0 +1,99 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  word-spacing: 3px;
+  letter-spacing: 0.8px;
+  background-color: #EEF3FA;
+  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.title {position:absolute; top:190px; left:140px;
+        font-size:30px; font-weight:bold; color:#FBA23C;}
+table { 
+  width: 540px;
+  border: 0;
+  font-size: 20px;
+  color: white;
+  position:absolute;
+  left: 140px; top: 290px;
+  text-align: left;
+}
+table a {
+  color: #FBA23C;
+  font-size: 18px;
+  text-decoration: none;
+}
+.login-font a {
+  color: #FBA23C;
+  font-size: 18px;
+  text-decoration: none;
+}
+.tableofpw {
+  width: 480px;
+  border: 0;
+  font-size: 16px;
+  color: white;
+  position:absolute;
+  left: 220px; top: 300px;
+  text-align: left;
+}
+h2 {color: #FBA23C;}
+form {
+  position:absolute;
+  left: 250px; top: 20px;
+  background-image:url(login-bg.png);
+  background-position: center; 
+  background-repeat: no-repeat;
+  height: 600px; width: 800px;
+}
+.login-font {
+  font-size: 14px;
+}
+.footer {
+  letter-spacing:0.5px; word-spacing:0;
+  position: relative;
+  left: 130px; top: 530px;
+  font-size: 13px;
+}
+.footer a {
+  color: #808080;
+}
+.right { text-align: right; 
+         padding-right:40px;
+}
+.field_with_errors {
+  margin-top: 10px;
+  padding: 1px;
+  background-color: red;
+  display: inline;
+}
+.field_with_errors label {
+  color: #FFF;
+}
+#error_explanation {
+  width: 350px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  position: absolute; left: 740px; top: 200px;
+}
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

@@ -1,0 +1,68 @@
+ <% type=@type%> 
+ <% if type=="1" %>
+   REDEMPTION
+ <% elsif type=="2"%>
+   PURCHASE
+ <% else %> 
+   WORKSHOP
+ <% end %>
+    <%= form_for(:crm_member_transactions, :url=>transaction_path(:type=>type, :load=>1)) do |f| %>
+       <p style="position:absolute; font-size:14px; left:5px; top:130px;">
+       From: <%=date_select "start","date",:start_year=>1960 %>&nbsp;      
+       To: <%=date_select "till","date",:start_year=>1960 %>&nbsp;     
+       <%= f.submit "Filter" %></p>
+    <% end %>
+    
+    
+    <% if type=="1" %>	
+       <% points=0 %>
+       <% @transactions.each do |transaction| %>
+       <% points += transaction.trans_points %> 
+       <% end %>
+   
+   <p style="position:absolute; top:170px; left:380px; font-size:14px;">GRAND TOTAL POINTS: <%= points %></p>
+      
+    <% elsif type=="2" %>
+       <% points=0 %>
+       <% discount=0 %>
+       <% purchase=0 %>
+       <% @transactions.each do |transaction| %>
+       <% discount += transaction.disc_amount %> 
+       <% purchase += transaction.unit_price %> 
+  <p style="position: absolute; top: 170px; left: 5px; font-size: 14px; width: 670px;">TOTAL MEMBER SAVINGS: <%= discount %>
+  	<span style="position: absolute; left: 350px;">TOTAL PURCHASED: <%= purchase %></span></p> 
+  	
+  	<div style="position: absolute; top: 535px; left: 550px; ">
+    <% if current_user.mbr_savings <= 40 %>
+    <%= link_to image_tag("mthcheck.png"), rebate_path%>
+    <% end %>
+    </div>
+     
+    <% end %>
+  <% end %>
+    <div style="overflow: auto; position: absolute; top: 200px; left: 5px; height: 320px; width: 670px; background-color: #F2F2F2;">
+    <table cellspacing="2" style="width: 655px; font-size: 13px;">
+      <tr style="background-color:#F8A23A; color:white;">
+        <th style="width:10px">No.</th>
+        <th style="width:10px">Date</th>
+        <th style="width:10px">Item</th>
+        <th style="width:10px">Description</th>
+        <th style="width:10px">Location</th>
+        <th style="width:10px">Quantity</th>
+        <th style="width:10px">Points</th>
+      </tr>
+   <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.trans_id%></td>
+        <td><%= transaction.trans_date.to_date %></td>
+        <td><%= transaction.item_id %></td>
+        <td><%= transaction.item_desc %></td>
+        <td><%= transaction.loc_id %></td>
+        <td><%= transaction.item_qty %></td>
+        <td><%= transaction.trans_points %></td>    
+      </tr>
+   <% end %>
+   </table>
+   </div>   
+   
+   

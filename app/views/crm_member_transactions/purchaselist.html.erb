@@ -1,0 +1,38 @@
+<div id="content" style="background-color:#DFDFDF;">
+	<h2 style="background-color:#2A5388; width:657px; height:35px;">Feedback</h2>
+	
+<% if !@purchases.empty?%>
+
+<div id="TabbedPanels1" class="TabbedPanels">
+      <ul class="TabbedPanelsTabGroup">
+        <li class="TabbedPanelsTab" style="background-color: white;">PURCHASE HISTORY</li>
+      </ul>
+</div>
+<div class="TabbedPanelsContentGroup">
+<div class="TabbedPanelsContent">
+	<%= form_for(:feedbacks, :url=>transfeedback_path) do |f| %>
+	 <table cellspacing="2" style="width: 655px; font-size: 14px; margin-top: 10px; height: 200px;">
+      <tr style="background-color:#F8A23A; color:white;">
+        <th style="width:3px">&nbsp;</th>
+        <th style="width:12px">Date</th>
+        <th style="width:12px">Item</th>
+        <th style="width:12px">Description</th>
+        <th style="width:3px">Quantity</th>
+      </tr>
+	 <% @purchases.each do |purchase| %>	
+	    <tr>
+          <td><%= radio_button_tag(:select, purchase.trans_id) %></td>
+          <td><%= purchase.trans_date.to_date %></td>
+          <td><%= purchase.item_id %></td>
+          <td><%= purchase.item_desc %></td>
+          <td><%= purchase.item_qty.to_i %></td>
+        </tr>         
+	 <% end %>
+	 </table>
+	 <%= f.submit "CONFIRM", :style=>"position: absolute; left: 580px;" %> 
+<% end %>
+</div>
+</div>
+<% end %>	 
+
+</div>

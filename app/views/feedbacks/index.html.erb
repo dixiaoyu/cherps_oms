@@ -1,0 +1,19 @@
+
+
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">Feedback</h2>
+     <div class="fb1content">
+     	<%= render "feedbacks/memberinfo"%>
+
+   <%= form_for(:feedbacks, :url=>feedbacktype_path) do |f| %>
+    <h3>Select type of feedback :</h3><br />
+     <p style="font-size:15px; color:black;">
+       <%= radio_button_tag(:trans, "trans") %><dfn style="color:#F8A23A;">Purchase</dfn>&nbsp;&nbsp;
+       <%= radio_button_tag(:trans, "nontrans") %><dfn style="color:#F8A23A;">Others</dfn>&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<%= f.submit "OK" %><br /><br />
+       Transactional feedback includes all your purchased and redemption transactions.
+     </p>
+     <% end %>
+     
+     </div>
+    <!-- end .content --></div>

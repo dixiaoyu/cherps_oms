@@ -1,0 +1,74 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Profile</h2>
+     <div class="mpcontent">
+     <h4 style="background-color:#F2F2F2; width:635px; height:27px; margin:2px 5px; position:absolute; left:5px; top:45px;">PERSONAL INFORMATION</h4><%= link_to "Edit", change_path(current_user.id), :style=>"position:absolute; left:600px; top:50px; z-index:1;"%>
+
+     <table border="0" cellspacing="3px" cellpadding="3px">
+  <tr>
+    <td><b>Member ID:</b>&nbsp;<%= @member.mbr_id %></td>
+    <td><b>Title:</b>&nbsp;<%= @member.mbr_title %></td>
+    <td><b>Status:</b>&nbsp;
+  <% if @member.status_level== 1 %>
+     <%= "Active" %>
+  <% elsif @member.status_level == -1%>
+     <%= "Expired" %>
+  <% else %>
+     <%= "Pending" %>
+  <% end%>         </td>
+  </tr>
+  <tr>
+    <td><b>Given Name:</b>&nbsp;<%= @member.first_name %></td>
+    <td><b>Surname:</b>&nbsp;<%= @member.last_name %></td>
+    <td><b>DOB:</b>&nbsp;<%= @member.birth_date.to_date %></td>
+  </tr>
+  <tr>
+    <td><b>Contact No:</b>&nbsp;<%= @member.contact_num %></td>
+    <td colspan="2"><b>Email:</b>&nbsp;<%= @member.email_addr %></td>
+  </tr>
+  <tr>
+  	<td>
+  		<b>Address:</b>&nbsp;
+  		<% if !@address_m.empty?%>
+  		<%= @address_m[0].addr_text%>
+  		<% end %>
+  	</td>
+  </tr>	
+  <tr>
+  	<td><b>Delivery Address:</b>&nbsp;
+  		<% if !@address_d.empty?%>
+  		<%= @address_d[0].addr_text %></td>
+  		<% end %>
+  </tr>	
+  <tr>
+    <td><b>Join Date:</b>&nbsp;<%= @member.join_date.to_date %></td>
+    <td colspan="2"><b>Expiry Date:</b>&nbsp;<%= @member.exp_date.to_date %></td> 
+  </tr>
+  <tr>
+  	<td><b>Points Accumulated:</b>&nbsp;<%= @member.points_accumulated %></td>
+    <td><b>Points Reserved:</b>&nbsp;<%= @member.points_reserved %></td>
+    <td><b>Points Redeemed:</b>&nbsp;<%= @member.points_redeemed %></td>  
+  </tr>
+  <tr>
+  	<td><b>Saving:</b>&nbsp;<%= @member.mbr_savings %></td>
+  	<td><b>Send Type:</b>&nbsp;<%= @member.send_type %></td>
+    <td><b>Send info:</b>&nbsp;
+  <% if @member.send_info =="Y" %>
+    <%= "Yes" %>
+  <% else %>
+    <%= "No" %> 
+  <% end%></td>  
+  </tr>
+  <tr>
+    <td><b>Password Changed:</b>&nbsp;<%= @member.pwd_changed.to_date %></td>
+  </tr>
+  <tr>
+    <td><b>Last Renewal:</b>&nbsp;<%= @member.last_renewal.to_date %></td>
+    <td colspan="2"><b>Last Login:</b>&nbsp;<%= @member.last_login.to_date %></td>
+  </tr>
+  
+</table>
+
+     
+     </div>
+    <!-- end .content --></div>
+

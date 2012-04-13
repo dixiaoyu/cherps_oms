@@ -1,0 +1,13 @@
+<%= form_for(:crm_product_list, :url=>filterproduct_path()) do |f| %>
+    <p style="text-align: right; background-color: #C9C9C9; width: 200px; margin-left: 450px;"><%= select_tag(:category, options_for_select([['SELECT CATEGORY', 0],['New Arrivals', 1], ['Special Promotion', 2],['CCCC', 3], ['DDDD', 4],['EEEE', 5], ['FFFF', 6]]))%>	
+    <%= f.submit "OK" %></p>
+    <% end %>
+<% @products.each do |product| %>
+	<table style="float: left; width: 150px; height: 10px; font-size: 13px; margin: 10px 5px;">
+  	<tr><td><%= image_tag "Advertisement/cp1.jpg", :style=>"padding-right: 5px;" %></td></tr>
+  	<tr><td style="height: 50px; font-size: 12px;"><%=  product.item_category %></td></tr>
+  	<tr><td style="height: 50px; font-size: 12px;"><%=  product.item_desc %></td></tr>
+
+    <tr><td><%= link_to "select", productdetail_path(:id=>product.id, :c=>params[:c]) %></td></tr>
+    </table>
+<% end %>

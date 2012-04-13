@@ -1,0 +1,46 @@
+<div id="content" style="background-color:#DFDFDF;">
+<h2 style="background-color:#2A5388; width:657px; height:35px;">Product Reservation</h2>
+    <div>
+      <li id="tab">FEATURED</li>
+      <div id="tabcontent"><%= image_tag "Advertisement/cp1.jpg", :style=>"float:left; height:160px; width:150px; margin-right:10px;" %>
+         <%= form_tag(location_path, :method=>'post') do %>
+          <p>
+           <b>Item:</b>
+           <%= @product.item_desc %><br />
+          </p><br />
+
+          <p>Please specify the quantity to resrve:<br />   
+	       <%= text_field_tag "quantity" %> &nbsp;&nbsp;<%= submit_tag 'Reserve' %> 
+	       <span style="font-size: 12px; color: red;"><%= yield %></span>
+	       <%= hidden_field_tag(:redeem_id, @product.id) %>
+	       <%= hidden_field_tag(:type, "product") %>
+	       <%= hidden_field_tag(:category, params[:c]) %>
+          </p>
+          <p style="font-size: 11px; color: red;">
+          <% if params[:q]=="0" %>
+          Please enter the ordered quantity!
+          <% end %>
+          <% if params[:l]=="0" %>
+          Please choose the location!
+          <% end %>
+          </p>
+
+        <% end %>	
+          
+     </div>
+   </div>
+  
+   <div class="shadetabs" id="countrytabs">
+   	<%= render "crm_product_lists/productlist" %>
+   </div>
+   
+<script type="text/javascript">
+
+var countries=new ddajaxtabs("countrytabs", "countrydivcontainer")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+</script>
+<!-- end .content --></div> 
+

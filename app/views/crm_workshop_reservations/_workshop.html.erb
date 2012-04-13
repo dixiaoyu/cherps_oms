@@ -1,0 +1,22 @@
+
+<form style=" overflow:auto; width:653px; height:135px; position:absolute; top:415px; margin:2px 5px;">
+ <table width="635" cellspacing="2" style="background-color:#F2F2F2; font-size: 13px;">
+  <tr style="background-color:#F8A23A; color:white;">
+    <th>Reservation</th>
+    <th>Description</th>  
+    <th>Workshop Date</th>  
+    <th>Reserve Date</th>
+    <th>&nbsp</th>
+  </tr>
+  <% @workshop_reservations.each do |workshop_reservation| %>
+  <tr>
+    <td>00000<%= workshop_reservation.id%></td>
+    <td><%= workshop_reservation.crm_workshop_list.workshop_desc %></td>    
+    <td><%= workshop_reservation.crm_workshop_list.workshop_date.to_date %></td>
+    <td><%= workshop_reservation.created_on.to_date %></td>
+    <td style="text-decoration: underline;"><%= link_to "cancel", workshopdestroy_path(:id=>workshop_reservation.id), :confirm=>"Are you sure?" %></td>    
+  </tr>
+  <% end %>
+</table>
+</form>
+

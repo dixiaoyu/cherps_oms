@@ -1,0 +1,24 @@
+
+<%= form_for(:crm_login_failed, :url => renewpw_path) do |f| %>
+<p class="title">CHANGE YOUR PASSWORD</p>
+<table cellspacing="10" cellpadding="7">
+  <tr>
+    <td colspan="2" style="font-size:12px;">Please enter your new password</td>
+  </tr>
+  <tr>
+    <td >NEW PASSWORD:</td>
+    <td><%= f.password_field :password %></td>
+  </tr>
+  <tr>
+    <td>CONFIRM NEW PASSWORD:</td>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  <%= hidden_field_tag(:mbr_id, @member.mbr_id) %>
+  <tr>
+    <td class="right" colspan="2"><%= image_submit_tag "cpsend.png" %></td>
+  </tr>
+</table>
+<div class="footer">
+     <p>@ 2011 Challenger Technologies Limited. All Rights Reserved | <a href="#">Privacy & Security Policy</a></p>
+   </div>
+<% end %>

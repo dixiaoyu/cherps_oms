@@ -1,0 +1,62 @@
+<div id="content" style="background-color:#DFDFDF;">
+<h2 style="background-color:#2A5388; width:657px; height:35px;">Redemption Reservation</h2>
+    <div>
+      <li id="tab">FEATURED</li>
+      <div id="tabcontent"><%= image_tag "Advertisement/cp1.jpg", :style=>"float:left; height:160px; width:150px; margin-right:10px;" %>
+         <%= form_tag(location_path, :method=>'post') do %>
+          <p>
+           <b>Item:</b>
+           <%= @redemption.item_desc %><br />
+          </p>
+          <br /><br />
+          <!--<p>
+           <b>From:</b>
+           <%= @redemption.eff_from.to_date %><br />
+          </p>
+
+          <p>
+           <b>To:</b>
+           <%= @redemption.eff_to.to_date %><br />
+          </p><br />
+         -->
+          <p>Please specify the quantity to reserve<br /><br /> 
+	       <%= text_field_tag "quantity" %> &nbsp;&nbsp;<%= submit_tag 'Reserve' %>
+	       <span style="font-size: 12px; color: red;"><%= yield %></span>
+	       <%= hidden_field_tag(:redeem_id, @redemption.id) %>
+	       <%= hidden_field_tag(:type, "redemption") %>
+	       <%= hidden_field_tag(:points, @redemption.points_required) %>
+          </p>
+          <p style="font-size: 11px; color: red;">
+          <% if params[:q]=="0" %>
+          Please enter the ordered quantity!
+          <% end %>
+          <% if params[:l]=="0" %>
+          Please choose the location!
+          <% elsif params[:l]=="1"%>
+          Sorry,your points is not enough for reservation.
+          <% end %>
+          </p>
+        <% end %>	
+          
+     </div>
+   </div>
+  
+ <ul id="countrytabs" class="shadetabs">
+    <li style="color:#204C86">POINTS:</li>
+    <li><%= link_to '0-250', redemption_path(:p1=>0, :p2=>250)%></li>	
+    <li><%= link_to '251-500', redemption_path(:p1=>251, :p2=>500)%></li>	
+    <li><%= link_to '501-750', redemption_path(:p1=>501, :p2=>750)%></li>	
+    <li><%= link_to '751-1000', redemption_path(:p1=>751, :p2=>1000)%></li>	
+    <li><%= link_to '1001&above', redemption_path(:p1=>1001, :p2=>999999)%></li><br />
+    <%= render "crm_redemption_lists/all" %>
+    </ul>
+<script type="text/javascript">
+
+var countries=new ddajaxtabs("countrytabs", "countrydivcontainer")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+</script>
+<!-- end .content --></div> 
+

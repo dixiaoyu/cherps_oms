@@ -1,0 +1,100 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">Reservation</h2>
+      <div class="rrrcontent">
+      	<div style="padding:0 5px;"><%= image_tag "Advertisement/cp1.jpg", :style=>"float:left; height:160px; width:150px; margin-right:10px;" %>
+          <p>
+           <b>Item:</b>
+           <%= @item.item_desc %><br />
+          </p>
+
+          <p>
+           <b>From:</b>
+           <%= @item.eff_from.to_date %><br />
+          </p>
+
+          <p>
+           <b>To:</b>
+           <%= @item.eff_to.to_date %><br />
+          </p>
+          <b>Quantity Reserve:</b>
+          <%=@quantity%><br />
+          
+        </div>
+
+<h4 style="background-color:#F2F2F2; width:635px; height:20px; margin:2px 5px; position:absolute; left:5px; top:220px;">Please select the Store to collect the item</h4>
+
+
+<% if @type=="product"%>
+	<%= form_for([@item, @item.crm_product_reservations.build]) do |f| %>
+	   <div style="overflow:auto; width:650px; height:150px; position:absolute; top:5px;">
+	     <table width="623" cellspacing="1">
+	       <tr style="background-color:#F8A23A;">
+	         <th scope="col">&nbsp;</th>
+	         <th scope="col">Store</th>
+	         <th scope="col">Location</th>
+	       </tr>  
+		<% if @locations.count >0 %>  
+		  <% @locations.each do |location| %>
+		     <% locname=ImsLocationList.find_by_loc_id(location.loc_id)%>
+		     <% if !locname.nil?%>
+		     <% if location.qty_on_hand > @quantity.to_f %>	     
+		     <tr>
+	          <td><%= radio_button_tag(:location, location.loc_id) %><br /></td>
+	          <td><%= locname.loc_name %></td>
+	          <% address_p = CoyAddressBook.get_address("LOCATION", location.loc_id, "0-PRIMARY")%>
+	          <td><%= address_p[0].addr_text %><br /></td>
+	         </tr>   
+		     <% end %>   
+		     <% end %>          
+		  <% end %> 
+		  <%= hidden_field_tag(:quantity, @quantity) %>	
+		  <%= hidden_field_tag(:category, params[:category]) %>			
+		  
+		<% end %>  
+	   </table>
+	  </div>
+	   
+	  <div style="position:absolute; top:160px; left:550px;">
+	   	 <%= image_submit_tag "reservebtn.png" %>
+	  </div>
+	<% end %>
+<% elsif @type=="redemption" %>
+	<%= form_for([@item, @item.crm_redemption_reservations.build]) do |f| %>
+	   <div style="overflow:auto; width:650px; height:150px; position:absolute; top:5px;">
+	     <table width="623" cellspacing="1">
+	       <tr style="background-color:#F8A23A;">
+	         <th scope="col">&nbsp;</th>
+	         <th scope="col">Store</th>
+	         <th scope="col">Location</th>
+	       </tr>  
+		<% if @locations.count >0 %>  
+		  <% @locations.each do |location| %>
+		     <% locname=ImsLocationList.find_by_loc_id(location.loc_id)%>
+		     <% if !locname.nil?%>
+		     <% if location.qty_on_hand > @quantity.to_f %>	     
+		     <tr>
+	          <td><%= radio_button_tag(:location, location.loc_id) %><br /></td>
+	          <td><%= locname.loc_name %></td>
+	          <% address_r = CoyAddressBook.get_address("LOCATION", location.loc_id, "0-PRIMARY")%>
+	          <td><%= address_r[0].addr_text %><br /></td>	          
+	         </tr>   
+		     <% end %>   
+		     <% end %>          
+		  <% end %> 
+		  <%= hidden_field_tag(:quantity, @quantity) %>	
+		  <%= hidden_field_tag(:points, @item.points_required) %>
+		<% end %>  
+	   </table>
+	  </div>
+	   
+	  <div style="position:absolute; top:160px; left:550px;">
+	   	 <%= image_submit_tag "reservebtn.png" %>
+	  </div>
+	<% end %>
+<% end %>
+
+
+  <h4 style="background-color:#F2F2F2; width:635px; height:20px; margin:2px 5px; position:absolute; left:5px; top:440px;">Terms & Conditions</h4>
+  
+  </div>
+<!-- end .content --></div> 

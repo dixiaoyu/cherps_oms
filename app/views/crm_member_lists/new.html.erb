@@ -1,0 +1,38 @@
+  <%= form_for(@member) do |f| %> 
+  <%= render 'shared/error_messages'%>
+  <p style="position:absolute; top:190px; left:130px; font-size:30px; font-weight:bold; color:#FBA23C;">STEP 1: ACCOUNT INFORMATION</p>
+<table border="0" cellspacing="0px" cellpadding="7px" style=" width: 550px; font-size: 14px; height: 20px; color: white; position:absolute; left: 140px; top: 275px; text-align: left;">
+  <tr>
+    <td>Name:</td>
+    <td colspan="2"><%= f.text_field :first_name, :size=>'10'%>-<%= f.text_field :last_name, :size=>'10'%><br /><span style="color:#FBA23C; font-size:11px; margin-left: 22px;">first name  -  last name</span></td>
+    <td>IC/FIN/Passport No:</td>
+    <td><%= f.text_field :mbr_id, :size=>'11' %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td colspan="2"><%= f.text_field :email_addr, :size=>'28'%></td>
+    <td>Contact No:</td>
+    <td><%= f.text_field :contact_num, :size=>'11' %></td>
+  </tr>
+  </table>
+  <table border="0" cellspacing="0px" cellpadding="7px" style="font-size:14px; height:30px; position:absolute; top:380px; left:140px; width:550px;">
+  <tr>
+    <td>Password:</td>
+    <td align="left" style="font-size:12px; color:#FBA23C"><%= f.password_field :password, :size=>'20' %></td>
+    <td style="color:#FBA23C; font-size:12px;">(minimum of 6 characters)</td>
+  </tr>
+  <tr>
+    <td>Re-type Password:</td>
+    <td align="left"><%= f.password_field :password_confirmation, :size=>'20' %></td>
+  </tr>
+  <% if params[:p]=='1'%>
+    <tr><td colspan="2" style="color:red; font-size:11px; ">Password length is less than 6 characters!</td></tr>
+  <% end %>
+  <tr>
+    <td colspan="3" style="text-align:right"><%= image_submit_tag "nextbtn.png" %></td>
+  </tr>
+</table>
+  <div style="letter-spacing:0.5px; word-spacing:0; position: relative; left: 120px; top: 530px; font-size: 13px; color: black; font-size: 13px;">
+      <p>@ 2011 Challenger Technologies Limited. All Rights Reserved | <a href="#" style="color: #808080;">Privacy & Security Policy</a></p>
+  </div>
+  <% end %>

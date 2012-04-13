@@ -1,0 +1,166 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= @title %></title>
+
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js", "application.js" %> 
+<%= csrf_meta_tag %>
+
+<% if @title=="Signup Page" %>
+<%= stylesheet_link_tag "sessions.css" %>
+<% else %>
+
+
+
+<%= stylesheet_link_tag 'mystyle' %>
+<%= stylesheet_link_tag 'SpryTabbedPanels' %>
+
+   <% if @title=="Home Page" %>
+   
+<%= stylesheet_link_tag 'jQuerystyle' %>
+<%= javascript_include_tag 'jquery-1.2.6.min'%>
+<%= javascript_include_tag 'jquery-easing-1.3.pack' %>
+<%= javascript_include_tag 'jquery-easing-compatibility.1.2.pack' %>
+<%= javascript_include_tag 'coda-slider.1.1.1.pack' %>
+
+	<script type="text/javascript">
+	
+		var theInt = null;
+		var $crosslink, $navthumb;
+		var curclicked = 0;
+		
+		theInterval = function(cur){
+			clearInterval(theInt);
+			
+			if( typeof cur != 'undefined' )
+				curclicked = cur;
+			
+			$crosslink.removeClass("active-thumb");
+			$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				$(".stripNav ul li a").eq(curclicked).trigger('click');
+			
+			theInt = setInterval(function(){
+				$crosslink.removeClass("active-thumb");
+				$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				$(".stripNav ul li a").eq(curclicked).trigger('click');
+				curclicked++;
+				if( 6 == curclicked )
+					curclicked = 0;
+				
+			}, 3000);
+		};
+		
+		$(function(){
+			
+			$("#main-photo-slider").codaSlider();
+			
+			$navthumb = $(".nav-thumb");
+			$crosslink = $(".cross-link");
+			
+			$navthumb
+			.click(function() {
+				var $this = $(this);
+				theInterval($this.parent().attr('href').slice(1) - 1);
+				return false;
+			});
+			
+			theInterval();
+		});
+	</script>
+     <% else %>
+	<%= javascript_include_tag "ajaxtabs.js"%>
+	<% end %>
+<% end %>
+
+</head>
+
+
+<body>
+<% if @title=="Signup Page" %>
+  
+  <%= yield %>
+
+<% else %>	
+<div class="container">
+  <div><%= image_tag "logo.png", {:width=>"250px", :height=>"80px", :style=>"position: absolute; left: 240px; top:10px;"} %> 
+   <!-- end .header --></div>
+<!-- <div class="search"><%= image_submit_tag "search.png" %></div><input type="search" size="25" value="search" onfocus="this.value=''" style="font-size:18px; color:#194784; position:absolute; left:825px; top:12px; z-index:1px;"/> -->
+
+  
+<div> 
+  <ul id="MenuBar1" class="MenuBarHorizontal">
+    <li><%= link_to image_tag("menu/home.png", :mouseover =>"menu/home-a.png", :height=>"57px" ), :controller=>"crm_member_lists", :action=>"show", :id=>current_user.id %></li>
+    <li><%= link_to image_tag("menu/rr.png", :mouseover=>"menu/rr-a.png", :height=>"57px"), redemption_path(:p1=>0, :p2=>0) %></li>
+    <li><%= link_to image_tag("menu/pr.png", :mouseover=>"menu/pr-a.png", :height=>"57px"), productlist_path(:c=>0) %></li>  
+    <li><%= link_to image_tag("menu/wr.png", :mouseover=>"menu/wr-a.png", :height=>"57px"), workshoplist_path() %></li>    
+    <li><%= link_to image_tag("menu/feedback.png", :mouseover=>"menu/feedback-a.png", :height=>"57px"),feedback_path %></li>
+    <li style="cursor:default;"><%= image_tag("menu/account.png", :height=>"55px")%></li>
+      <p style="color:#FBA23C; background-color: #3C5C8B; position: absolute; top: 11px; left: 768px; font-size: 12px; width:90px;">Welcome&nbsp;<%= current_user.first_name %></p>
+<%= link_to image_tag("menu/logout.png", :style=>"height:17px; position:absolute; left:830px; top:28px; z-index:1;"), signout_path %>
+  </ul><br />
+  <%= image_tag "hr4menu.png", :style=>"position: absolute; left:230px; width: 900px; top:150px;" %>
+</div>
+  
+<div class="sidebar1" style="background: url(<%= asset_path('01-Home-BG-AccountInfo.png') %>); height:195px; width:200px; background-repeat:no-repeat;">
+    <ul class="nav" >
+      <li style="border:none; padding-left: 15px;"><h3>ACCOUNT INFORMATION</h3></li>
+      <li style="padding-left: 25px;"><%= link_to "My Profile", detail_path(current_user.id)%></li>
+      <li style="padding-left: 25px;"><%= link_to "My Reservation", crm_redemption_reservations_path %></li>
+      <li style="padding-left: 25px;"><%= link_to "My Membership", status_path(current_user.id)%></li>
+      <li style="padding-left: 25px;"><%= link_to "My Password", changepw_path %></li>
+      <li style="border:none; padding-left: 25px;"><%= link_to "My Transaction History", transaction_path(:type=>1) %></li>
+    </ul>
+    <!-- end .sidebar1 --></div>
+    
+<div class="sidebar2" style="background: url(<%= asset_path('01-Home-BG-MemberPts.png') %>); height:190px; width:215px; background-repeat:no-repeat;">
+    <ul class="nav" style="margin-left: 3px;">
+      <li style="border:none; margin:10px 5px;"><h3>MEMBER POINTS</h3></li>
+      <li style="color:white; border:none;">Accumulated<span class="fltrt"><%=current_user.points_accumulated %></span></li>
+      <li style="color:white; border: none;">Currently Reserved<span class="fltrt"><%=current_user.points_reserved %></span></li>
+      <li style="color:white;">Currently Redeem<span class="fltrt"><%=current_user.points_redeemed%></span></li>
+      <li style="border:none;">Total Savings<span class="fltrt"><%=current_user.mbr_savings %></span></li>
+    </ul>
+   
+    <!-- end .sidebar2 --></div>
+  
+<div class="sidebar3" style="background: url(<%= asset_path('01-Home-BG-RecentTrans.png') %>); background-repeat:no-repeat; width:200px; height:200px;">
+      
+    <ul class="nav" style="color:#F8A23A;">
+      <!--<li><h3>RECENT TRANSACTIONS</h3></li>
+      <% CrmMemberTransaction.all_transaction(current_user.mbr_id)[0..2].each do |transaction| %>
+      <li>Date:<%= transaction.trans_date.to_formatted_s(:long) %> Receipt No:<%= transaction.trans_id %></li>
+      <% end %>-->
+    </ul>
+    <!-- end .sidebar3 --></div>
+    
+  
+  
+  	<%= yield %>
+  	
+ 
+  <div class="footer" style="background:url(<%= asset_path('00-Footer-BG1.png')%>); width:944px; background-repeat: no-repeat;">
+    <table width="200" border="0" cellspacing="10px" cellpadding="3px">
+  <tr>
+    <td><a href="#">Contact us</a></td>
+    <td><a href="#">About us</a></td>
+    <td><a href="#">Terms and conditions</a></td>
+    <td><a href="#">Privacy & Security Policy</a></td>
+    
+  </tr>
+  <tr>
+    <td colspan="4"><%= link_to "@2012 Challenger Technologies Limited. All Rights Reserved", "http://203.127.118.29/images/CTL/MRPRIVACY.pdf" %></td>
+  </tr>
+</table>
+
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+<% end %>
+<!--<script type="text/javascript">
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+</script>-->
+ <%= debug(params) if Rails.env.development? %>
+</body>
+
+</html>
+

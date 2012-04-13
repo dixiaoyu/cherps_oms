@@ -1,0 +1,19 @@
+
+
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Membership</h2>
+     <div class="mrcontent">
+     <h4 style="background-color:#F2F2F2; width:635px; height:27px; margin:2px 5px; position:absolute; left:5px; top:45px;">
+        Date Of Membership:   From <%= @member.last_renewal.to_date%> To <%= @member.exp_date.to_date%><br/>
+     </h4>
+     <P style="background-color:#F2F2F2; width:635px; height:108px; margin:3px 5px; position:absolute; left:5px; top:80px; font-size:13px; padding-top:5px;">
+        <b>STATUS</b><br /><br />
+        Your membership is successfully updated and will expire on (<%=@member.exp_date.to_date %>)
+	 <h5 style="color:#F8A23A; position:absolute; left:10px; top:150px; font-size:13px;">
+	 	Thank you for renewing your membership to us.
+	 </h5>
+	 </P>
+	 
+     </div>
+<!-- end .content --></div>
+	   

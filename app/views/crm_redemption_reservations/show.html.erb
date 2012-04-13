@@ -1,0 +1,66 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">Redemption Reservation</h2>
+      <div class="rrscontent">
+      	<div style="padding:0 5px;"><%= image_tag "Advertisement/cp1.jpg", :style=>"float:left; height:160px; width:150px; margin-right:10px;" %>
+          <p>
+           <b>Item:</b>
+           <%= @redemption.item_desc %><br />
+          </p>
+
+          <p>
+           <b>From:</b>
+           <%= @redemption.eff_from.to_date %><br />
+          </p>
+
+          <p>
+           <b>To:</b>
+           <%= @redemption.eff_to.to_date %><br />
+          </p>
+    
+        </div>
+
+<h4 style="background-color:#F2F2F2; width:635px; height:20px; margin:2px 5px; position:absolute; left:5px; top:220px;">You have successfully reserved this item. Thank you !</h4>        
+     <table border="0" cellspacing="5" cellpadding="0" style="position: absolute; top: 260px; left: 50px;">
+        <tr>
+         <td>Reference No:</td>
+         <td>00000<%=@reservation.id %></td>
+        </tr>
+        <tr>
+         <td>Store:</td>
+         <td><%=@location.loc_name %></td>
+        </tr>
+        <tr>
+         <td>Address:</td>
+         <% if !@address.empty? %>
+         <td><%= @address[0].addr_text%></td>
+         <% end %>
+        </tr>
+        <tr>
+         <td style="width: 200px;">Order Quantity:</td>
+         <td><%=@reservation.qty_reserved.to_i %></td>
+        </tr>
+        <tr>
+         <td>Reservation Expires On:</td>
+         <td><%=@reservation.valid_until.to_date%></td>  
+        </tr>
+        <tr style="font-size:16px; color:black;">
+         <td>Points Used:</td>
+         <td><%=@redemption.points_required * @reservation.qty_reserved.to_f %></td>
+        </tr>
+        <tr style="font-size:16px; color:black;">
+         <td>Points Balance:</td>
+         <td><%=current_user.points_accumulated-current_user.points_reserved-current_user.points_redeemed %></td>
+        </tr>
+     </table>
+
+	<form style="position:absolute; top:520px; left:50px; width:400px;">
+	<%= link_to image_tag("continue-reservationbtn.png"), redemption_path(:p1=>0, :p2=>0) %>
+    <a href="/crm_redemption_reservations" style="position: absolute; left: 210px;"><%= image_tag "view-reservationbtn.png" %></a> 
+    </form>
+ 
+    
+   <!-- <%= link_to "Printable Invoice (PDF)", redeemreceipt_path(:id_rv=>@reservation.id,:id_rd=>@redemption, :format => 'pdf') %> -->
+
+</div>
+<!-- end .content --></div> 
+

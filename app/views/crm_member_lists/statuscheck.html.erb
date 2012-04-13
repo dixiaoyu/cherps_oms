@@ -1,0 +1,60 @@
+<div id="content" style="background-color:#DFDFDF;">
+    <h2 style="background-color:#2A5388; width:657px; height:35px;">My Membership</h2>
+     <div class="mrcontent">
+     <h4 style="background-color:#F2F2F2; width:642px; height:77px; z-index:1; margin:2px 5px; position:absolute; left:5px; top:45px;">
+     	Member Since:<%= @member.join_date.to_date%><br />
+     	Last Renewal&nbsp;&nbsp;:<%= @member.last_renewal.to_date%><br />
+     	Expiry Date&nbsp;&nbsp;&nbsp;&nbsp;:<%= @member.exp_date.to_date%><br />     	
+          <% day_ren=(@member.exp_date.to_date-Time.now.to_date).to_i %>
+          <% day_exp=(Time.now.to_date-@member.exp_date.to_date).to_i %>
+          <% point=@member.points_accumulated-@member.points_reserved-@member.points_redeemed %>
+     </h4>
+     <P style="background-color:#F2F2F2; width:642px; height:118px; margin:3px 5px; position:absolute; left:5px; top:130px; font-size:13px; padding-top:5px;">
+     	
+     	<% if (day_ren<=@ren_limit[0].set_data.to_i && day_ren>=0)||(day_exp<=@exp_limit[0].set_data.to_i && day_exp>=0) %>
+     	<b>STATUS:</b><br />
+     	 <% if day_ren<=@ren_limit[0].set_data.to_i && day_ren>0%>
+         Your membership will expire on <%= day_ren%> day(s) later,Kindly renew your membership before it expires.<br />
+         <% elsif day_exp<=@exp_limit[0].set_data.to_i && day_exp>0 %>
+         Your membership has already expired on <%=@member.exp_date.to_date %>,Kindly renew your membership before <%=(@member.exp_date+@exp_limit.set_data.days).to_date %>.<br />
+         <% end %>
+	    <% if point.to_i >= 2000 %>
+	     You current have <%=point %> points and you can use it to renew your membership.<br/>
+	 <h5 style="color:#F8A23A; position:absolute; left:10px; top:205px; font-size:13px;">Note: Member can use his 2,000 Points for renewal either 30 days before or 30 days after expiration.</h5></P>
+     <h4 style="position:absolute; top:265px; left:5px;">PAYMENT TYPE:</h4>
+     
+     <%= form_for(:crm_member_list, :url =>renew_path ) do |f|%>
+       <table cellspacing="3" width="200" height="220" style="position:absolute; top:12px; left:100px;">
+         <tr>
+         <td><%= radio_button_tag(:type, 1) %></td>
+         <td><%= image_tag "Advertisement/points.png" %></td>
+         </tr>
+         <tr>
+         <td><%= radio_button_tag(:type, 2) %></td>
+         <td><%= image_tag "Advertisement/nets.png" %></td>
+         </tr>
+         <tr>
+         <td><%= radio_button_tag(:type, 3) %></td>
+         <td><%= image_tag "Advertisement/master.png" %></td>
+         </tr>
+         <tr>
+         <td><%= radio_button_tag(:type, 4) %></td>
+         <td><%= image_tag "Advertisement/visa.png" %></td>
+         </tr>
+       </table>
+       
+       <%= image_submit_tag "renewbtn.png", :style=>"position:absolute; top:220px; left:400px;"  %>
+       
+     </form>
+     
+
+         <% end %>
+         
+       <% end %>  
+   
+    <% end %> 
+    </div>
+    <!-- end .content --></div>
+	   
+	
+ 

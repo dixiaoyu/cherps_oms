@@ -1,0 +1,13 @@
+<form style="overflow: auto; background-color: #DFDFDF; position: absolute; top: 30px; width: 673px; height: 258px; left:0px; border: solid white;">
+	
+<% @redemptions.each do |redemption| %>
+	<table style="float: left; width: 150px; height: 12px; font-size: 13px; margin: 15px 5px;">
+  	<tr><td><%= image_tag "Advertisement/cp1.jpg", :style=>"padding-right: 5px;" %></td></tr>
+  	<tr><td style="height: 50px; font-size: 12px;"><%=  redemption.item_desc %></td></tr>
+  	<tr><td>Point_required:</td></tr>
+    <tr><td><%=  redemption.points_required %></td></tr>
+    <tr><td><%= link_to "select", redeemdetails_path(:id=>redemption.id,:p=>redemption.points_required) %></td></tr>
+    </table>
+<% end %>
+
+</form>
