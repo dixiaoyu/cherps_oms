@@ -1,14 +1,19 @@
-ActionMailer::Base.delivery_method = :smtp 
+#ActionMailer::Base.delivery_method = :smtp 
+ 
 ActionMailer::Base.smtp_settings = {
-    :address => "Exchange.challenger.sg",
+    
+    :address => "exchange.challenger.sg",
+    #:address=>"smtp.gmail.com",
     :port => 25,
-   # :domain => "bizpoint-intl.com",
-    :user_name => "cherp@challenger.sg",
-    :password => "Cherps909",
-    #:authentication => :none,
-    :enable_starttls_auto => true,
-    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
+    :domain => "challenger.sg",
+    :user_name => "cherps@challenger.sg",
+    :password => "cherps99",
+    :authentication => :login
+    #:enable_starttls_auto => false
+
+    #:authentication => :ntlm
+    
  }
- #ActionMailer::Base.default_url_options[:host] = "challenger.sg"
- ActionMailer::Base.perform_deliveries = true 
-ActionMailer::Base.raise_delivery_errors = true 
+#ActionMailer::Base.default_url_options[:host] = "challenger.com.sg"
+ #ActionMailer::Base.perform_deliveries = true 
+ #ActionMailer::Base.raise_delivery_errors = true 

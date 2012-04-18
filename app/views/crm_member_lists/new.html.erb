@@ -29,7 +29,9 @@
     <tr><td colspan="2" style="color:red; font-size:11px; ">Password length is less than 6 characters!</td></tr>
   <% end %>
   <tr>
-    <td colspan="3" style="text-align:right"><%= image_submit_tag "nextbtn.png" %></td>
+    <td colspan="3" style="text-align:right">
+    <%= link_to image_tag("cpcancel.png"), signin_path, :style=>"color:#053A7F;position:absolute; top:79px; left:320px;" %>
+    <%= image_submit_tag "nextbtn.png", :style=>"position:absolute; top:79px; left:450px;" %></td>
   </tr>
 </table>
   <div style="letter-spacing:0.5px; word-spacing:0; position: relative; left: 120px; top: 530px; font-size: 13px; color: black; font-size: 13px;">

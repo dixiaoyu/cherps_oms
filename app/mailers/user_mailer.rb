@@ -1,7 +1,7 @@
 require 'digest/MD5'
 class UserMailer < ActionMailer::Base
-  default :from => "cherp@challenger.sg"
-  
+  #default :from => "cherps@challenger.sg"
+  default :from => "cherps@challenger.sg"
   def thankyou(user)
     @member = user 
     @password=user.password   
@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     string=email+time
     code=Digest::MD5.hexdigest(string)
     @url  = "http://localhost:3000/activeaccount/"+@member.id.to_s+"/"+code
-    mail(:to => email, :subject => "Test", :from => "cherp@challenger.sg")
+    mail(:to => email, :subject => "Test", :from => "cherps@challenger.sg")
   end 
   
   def resetpw(user)
@@ -22,6 +22,6 @@ class UserMailer < ActionMailer::Base
     string=email+time
     code=Digest::MD5.hexdigest(string)
     @url  = "http://localhost:3000/resetpw/"+@member.id.to_s+"/"+code
-    mail(:to => email, :subject => "ResetPassword", :from => "cherp@challenger.sg")
+    mail(:to => email, :subject => "ResetPassword", :from => "cherps@challenger.sg")
   end
 end

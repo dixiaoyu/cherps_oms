@@ -9,8 +9,8 @@ class CrmMemberTransaction < ActiveRecord::Base
     where(:mbr_id=>mbr_id,:trans_type => trans_type)
   end  
   
-  def self.filter_through_date(from,till,type)    
-    where("trans_date>=? and trans_date<=? and trans_type=? ",from,till,type)
+  def self.filter_through_date(from,till,type,mbr_id)    
+    where("trans_date>=? and trans_date<=? and trans_type=? and mbr_id=? ",from,till,type,mbr_id)
   end
   
   def self.all_transaction(mbr_id)
@@ -24,4 +24,5 @@ class CrmMemberTransaction < ActiveRecord::Base
   def self.find_item(mbr_id,trans_id)
     where(:mbr_id=>mbr_id, :trans_type=>"PS", :trans_id=>trans_id)
   end
+
 end

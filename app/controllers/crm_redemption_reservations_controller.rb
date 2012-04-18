@@ -34,7 +34,9 @@ class CrmRedemptionReservationsController < ApplicationController
      
       @reservation = @redemption.crm_redemption_reservations.create(:coy_id=>"CTL", :mbr_id => current_user.mbr_id, :item_id => @redemption.item_id, :loc_id => params[:location], :item_desc => @redemption.item_desc, 
                                                                     :qty_reserved => params[:quantity].to_f, :date_reserved => Time.now,:valid_until => 7.days.from_now,
-                                                                    :crm_member_list_id => current_user.id, :status_level => 0, :crm_redemption_list_id=>@redemption.id, :line_num=>line_num)   
+                                                                    :crm_member_list_id => current_user.id, :status_level => 0, :crm_redemption_list_id=>@redemption.id, :line_num=>line_num, 
+                                                                    :created_by=>current_user.first_name,
+                                                                    :modified_by=>current_user.first_name, :modified_on=>Time.now)   
       
       #points_acc = current_user.points_accumulated - params[:quantity].to_f * @redemption.points_required
       points_res = current_user.points_reserved + params[:quantity].to_f * @redemption.points_required
@@ -49,7 +51,8 @@ class CrmRedemptionReservationsController < ApplicationController
       location = locations[0]
       qty_on_hand = location.qty_on_hand - params[:quantity].to_f
       qty_reserved = location.qty_reserved + params[:quantity].to_f
-      location.update_attributes(:qty_on_hand => qty_on_hand, :qty_reserved => qty_reserved)      
+      location.update_attributes(:qty_on_hand => qty_on_hand, :qty_reserved => qty_reserved, :created_by=>current_user.first_name,
+                                                                    :modified_by=>current_user.first_name, :modified_on=>Time.now)      
             
       redirect_to reservation_path(:redemption_list_id=>@redemption.id, :id=>@reservation.id)    
     end
@@ -59,7 +62,8 @@ class CrmRedemptionReservationsController < ApplicationController
   def destroy  
     #if r==true 
     @reservation = CrmRedemptionReservation.find(params[:id])   
-    @reservation.update_attributes(:status_level => -2)   
+    @reservation.update_attributes(:status_level => -2,:created_by=>current_user.first_name,
+                                   :modified_by=>current_user.first_name, :modified_on=>Time.now)   
     
     #points_acc = current_user.points_accumulated + params[:qty].to_f * @reservation.crm_redemption_list.points_required
     points_res = current_user.points_reserved - params[:qty].to_f * @reservation.crm_redemption_list.points_required
@@ -70,7 +74,8 @@ class CrmRedemptionReservationsController < ApplicationController
     location = locations[0]
     qty_on_hand=locations[0].qty_on_hand+@reservation.qty_reserved
     qty_reserved=locations[0].qty_reserved-@reservation.qty_reserved
-    location.update_attributes(:qty_on_hand => qty_on_hand, :qty_reserved => qty_reserved)
+    location.update_attributes(:qty_on_hand => qty_on_hand, :qty_reserved => qty_reserved, :created_by=>current_user.first_name,
+                                                                    :modified_by=>current_user.first_name, :modified_on=>Time.now)
     #@reservation.destroy
     redirect_to redeemhistory_path 
     #end
@@ -82,7 +87,8 @@ class CrmRedemptionReservationsController < ApplicationController
     @reservation=CrmRedemptionReservation.create(:id=>max_id+1,:coy_id=>"CTL", :mbr_id=>current_user.mbr_id,
                                                 :line_num=>line_num+1, :item_id=>"!VCH-REBATE", :item_desc=>"Rebate Voucher",
                                                 :qty_reserved=>1, :date_reserved=>Time.now, :valid_until=>7.days.from_now,
-                                                :status_level=>1, :crm_member_list_id=>current_user.id, :crm_redemption_list_id=>"1")                                                     
+                                                :status_level=>1, :crm_member_list_id=>current_user.id, :crm_redemption_list_id=>"1", :created_by=>current_user.first_name,
+                                                                    :modified_by=>current_user.first_name, :modified_on=>Time.now)                                                     
   end
 end  
 

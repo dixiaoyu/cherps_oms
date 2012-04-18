@@ -6,14 +6,13 @@
  <% else %> 
    WORKSHOP
  <% end %>
-    <%= form_for(:crm_member_transactions, :url=>transaction_path(:type=>type, :load=>1)) do |f| %>
+    <%= form_for(:crm_member_transactions, :url=>transaction_path(:type=>type, :load=>1, :more=>@more)) do |f| %>
        <p style="position:absolute; font-size:14px; left:5px; top:130px;">
        From: <%=date_select "start","date",:start_year=>1960 %>&nbsp;      
        To: <%=date_select "till","date",:start_year=>1960 %>&nbsp;     
        <%= f.submit "Filter" %></p>
     <% end %>
-    
-    
+
     <% if type=="1" %>	
        <% points=0 %>
        <% @transactions.each do |transaction| %>
@@ -28,18 +27,17 @@
        <% purchase=0 %>
        <% @transactions.each do |transaction| %>
        <% discount += transaction.disc_amount %> 
-       <% purchase += transaction.unit_price %> 
-  <p style="position: absolute; top: 170px; left: 5px; font-size: 14px; width: 670px;">TOTAL MEMBER SAVINGS: <%= discount %>
-  	<span style="position: absolute; left: 350px;">TOTAL PURCHASED: <%= purchase %></span></p> 
+       <% purchase += transaction.unit_price.to_f %> 
+       <% end %>
+	  <p style="position: absolute; top: 170px; left: 5px; font-size: 14px; width: 670px;">TOTAL MEMBER SAVINGS: <%= discount %>
+	  	<span style="position: absolute; left: 300px;">TOTAL PURCHASED: <%= purchase %></span></p> 
   	
-  	<div style="position: absolute; top: 535px; left: 550px; ">
-    <% if current_user.mbr_savings <= 40 %>
-    <%= link_to image_tag("mthcheck.png"), rebate_path%>
+	  	<div style="position: absolute; top: 165px; left: 550px; ">
+	    <% if current_user.mbr_savings <= 40 %>
+	    <%= link_to image_tag("mthcheck.png"), rebate_path%>
+	    <% end %>
+	    </div>
     <% end %>
-    </div>
-     
-    <% end %>
-  <% end %>
     <div style="overflow: auto; position: absolute; top: 200px; left: 5px; height: 320px; width: 670px; background-color: #F2F2F2;">
     <table cellspacing="2" style="width: 655px; font-size: 13px;">
       <tr style="background-color:#F8A23A; color:white;">
@@ -63,6 +61,8 @@
       </tr>
    <% end %>
    </table>
-   </div>   
+   </div>  
    
-   
+   <div style="position: absolute; top: 535px; left: 590px; text-decoration: underline; "> 
+   <%= link_to "More", transaction_path(:type=>type,:more=>1)%>
+   </div>

@@ -5,7 +5,7 @@ class ImsInvPhysical < ActiveRecord::Base
     
   set_primary_keys :coy_id, :loc_id, :item_id, :line_num
 
-  attr_accessible :qty_on_hand, :qty_reserved,:rowguid
+  attr_accessible :qty_on_hand, :qty_reserved,:rowguid, :modified_on
   
   belongs_to :crm_redemption_list, :foreign_key => "item_id"
  
